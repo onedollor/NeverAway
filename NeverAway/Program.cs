@@ -66,8 +66,11 @@ namespace NeverAway
             int rand_num;
             var rand = new Random();
 
+            int max_runtime = 60*60*9;
+            int total_runtime = 0;
+
             long s = 0;
-            while (true)
+            while (total_runtime < max_runtime)
             {
                 if (0 == (s % 2))
                 {
@@ -80,7 +83,9 @@ namespace NeverAway
                 
                 s++;
 
-                rand_num = ((Math.Abs(rand.Next()) + 1) % 30);
+                rand_num = 120 + ((Math.Abs(rand.Next()) + 1) % 30);
+                
+                /*
                 if (0 == ((Math.Abs(rand.Next()) + 1) % 1000))
                 {
                     if (0 == (s % 2))
@@ -92,8 +97,10 @@ namespace NeverAway
                         NativeMethods.SetNumLock(false);
                     }
                 }
-
+                */
+                
                 Thread.Sleep(rand_num * 1000); 
+                total_runtime+=rand_num;
             }
         }
     }
